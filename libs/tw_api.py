@@ -26,6 +26,9 @@ def get_server_info(address, port):
         server_info["players"] = []
 
         for i in xrange(0, server_info["num_players"]):
+            from pprint import pprint
+            pprint(slots)
+
             player = {}
             player["score"] = slots[8+i*2+1]
             player["name"] = unicode(slots[8+i*2])
@@ -90,4 +93,5 @@ def get_all_servers():
 if __name__=="__main__":
     import pprint
     for servername, serverport in get_all_servers():
-        pprint.pprint( get_server_info(servername, serverport))
+        get_server_info(servername, serverport)
+#        pprint.pprint( get_server_info(servername, serverport))

@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>{{ server.name }}</h2>
+    <ul>
+	    <li>{{ server.ip }}:{{ server.port }}</li>
+    </ul>
+{% endblock %}

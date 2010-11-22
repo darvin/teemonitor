@@ -1,0 +1,135 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+
+	
+	<title>Teeworlds</title>	<link href="{{ STATIC_URL }}style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+
+
+<div id="outer">
+
+	<div id="top_left"><div id="top_right"><div id="top_mid">
+			<!--
+		<div style="
+				margin-top: 10px;
+				float:right;
+				text-align: left;
+				line-height: 14px;
+				color: #FFFFFF;
+				padding-left: 12px;
+				padding-top: 25px;
+				width: 223px; height: 101px;
+				background-image: url('/images/donate_bgr.png');
+				background-repeat: no-repeat;"
+			>
+				<div style="position: absolute; margin-top: 10px;">
+					<img
+						style="max-width: 204px; background-image: url('/images/donate_bar_true.png')"
+						src="/images/empty.png" width="197" height="15" alt=""
+					/><img
+						style="max-width: 204px; background-image: url('/images/donate_bar_false.png'); background-position: top right; "
+						src="/images/empty.png" width="7" height="15"  alt=""
+					/>
+				</div>
+
+				<img style="
+					max-width: 200px; margin-top: 4px; position: relative; left: 195px"
+					src="/images/donate_pin_01.png"  alt=""/>
+
+			<div style='clear:both;'></div>
+			
+			<div style="float: right; margin-right: 15px; margin-top: 5px;">
+				<form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+				<div>
+				<input type="hidden" name="cmd" value="_xclick"/>
+				<input type="hidden" name="business" value="magnus.auvinen@gmail.com"/>
+				<input type="hidden" name="item_name" value="Teeworlds"/>
+				<input type="hidden" name="item_number" value="teeworlds"/>
+				<input type="hidden" name="no_shipping" value="1"/>
+				<input type="hidden" name="no_note" value="1"/>
+				<input type="hidden" name="currency_code" value="EUR"/>
+				<input type="hidden" name="tax" value="0"/>
+				<input type="hidden" name="lc" value="SE"/>
+				<input type="hidden" name="bn" value="PP-DonationsBF"/>
+				<input type="image" src="/images/donate_button.png" name="submit" alt="Make payments with PayPal - it's fast, free and secure!"/>
+				<img alt="" src="https://www.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1"/>
+				</div>
+				</form>
+			</div>
+
+			<div style="margin-top: 5px">
+				<img alt="" style="max-width: 200px;" src="/images/donate_bubble_01.png"/> Break even<br/>
+			</div>
+
+			<div style='clear:both;'></div>
+
+		</div>
+			-->
+
+			<div style="float: right; margin-right: -8px; margin-top: 5px;">
+				<form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+				<div>
+				<input type="hidden" name="cmd" value="_xclick"/>
+				<input type="hidden" name="business" value="magnus.auvinen@gmail.com"/>
+				<input type="hidden" name="item_name" value="Teeworlds"/>
+				<input type="hidden" name="item_number" value="teeworlds"/>
+				<input type="hidden" name="no_shipping" value="1"/>
+				<input type="hidden" name="no_note" value="1"/>
+				<input type="hidden" name="currency_code" value="EUR"/>
+				<input type="hidden" name="tax" value="0"/>
+				<input type="hidden" name="lc" value="SE"/>
+				<input type="hidden" name="bn" value="PP-DonationsBF"/>
+				<input type="image" src="{{ STATIC_URL }}images/default_donate.png" name="submit" alt="Make payments with PayPal - it's fast, free and secure!"/>
+				<img alt="" src="https://www.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1"/>
+				</div>
+				</form>
+			</div>
+					
+		<a href="/"><img src="{{ STATIC_URL }}images/twlogo.png" alt="teeworlds logo" /></a>
+	</div></div></div>
+		<div id="menu_left"><div id="menu_right"><div id="menu_mid">
+			<div id="menu">
+				<ul>
+					<li id="current"><a href="/">TeeMonitor</a></li>
+					<li ><a href="http://teeworlds.com/forum/">Forum</a></li>
+					<!-- li ><a href="/?page=docs">Docs</a></li -->
+					<li ><a href="http://teeworlds.com/?page=help">Support</a></li>
+					<li ><a href="http://teeworlds.com/?page=downloads">Downloads</a></li>
+					<li ><a href="http://teeworlds.com/?page=journal">Blog</a></li>
+					<li><a href="http://teeworlds.com/?page=news">News</a></li>
+				</ul>
+			</div>
+		</div></div></div>
+		
+		<div id="tlc"><div id="trc"><div id="tb">&nbsp;</div></div></div>
+		
+		<div id="lb"><div id="rb"><div id="mid">
+
+		<div id="container">
+	
+	{% block content %}
+content block
+{% endblock %}
+</div>
+
+	<div style='clear:both;'></div>
+	</div>
+
+	</div></div></div>
+	
+	<div id="blc"><div id="brc"><div id="bb">&nbsp;</div></div></div>
+</div>
+
+<div id="page_foot">
+	TeeMonitor - Teeworlds server monitoring system, developed by Sergey Klimov - <a href="mailto:dcdarv@gmail.com">Contact me</a>
+</div>
+
+
+</body>
+
+</html>

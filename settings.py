@@ -1,5 +1,7 @@
 # Django settings for teemonitor project.
 
+import os
+
 DEBUG = True
 TEMPLATE_DEBUG = True
 
@@ -45,7 +47,7 @@ USE_L10N = True
 
 # Absolute path to the directory that holds media.
 # Example: "/home/media/media.lawrence.com/"
-MEDIA_ROOT = ''
+MEDIA_ROOT = "" 
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash if there is a path component (optional in other cases).
@@ -78,9 +80,7 @@ MIDDLEWARE_CLASSES = (
 ROOT_URLCONF = 'teemonitor.urls'
 
 TEMPLATE_DIRS = (
-    # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
-    # Always use forward slashes, even on Windows.
-    # Don't forget to use absolute paths, not relative paths.
+    os.path.join(os.path.dirname(__file__), 'templates'),
 )
 
 INSTALLED_APPS = (
@@ -90,9 +90,22 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.sites',
     'django.contrib.messages',
-    # Uncomment the next line to enable the admin:
-    # 'django.contrib.admin',
-    # Uncomment the next line to enable admin documentation:
-    # 'django.contrib.admindocs',
+    'django.contrib.staticfiles',
+    'django.contrib.admin',
+    'django.contrib.admindocs',
     'teeworlds_monitor',
 )
+
+
+
+
+STATIC_ROOT =  "/home/darvin/workspace/teemonitor/static_media"
+STATICFILES_DIRS = ( os.path.join(os.path.dirname(__file__), 'static'),)
+STATIC_URL = "/static/"
+#Custom settings
+
+
+
+TEEWORLDS_MONITOR_SERVER_REFRESH_INTERVAL=400
+TEEWORLDS_MONITOR_SERVERS_REFRESH_INTERVAL=14
+TEEWORLDS_MONITOR_INTERESTED_TIMEOUT=120

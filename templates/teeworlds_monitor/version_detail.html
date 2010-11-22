@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Download Teeworlds {{ version }} client</h2>
+
+<p>Teeworlds is available for several platforms:</p>
+<img src="{{ STATIC_URL }}images/ico-win.png"><span style="padding-left:3px; vertical-align:top; font-weight: bold;">Windows</span>
+<ul>
+	<li><a href="http://www.teeworlds.com/files/teeworlds-{{ version }}-win32.zip" target="_blank">Windows 32bit</a></li>
+</ul>
+<img src="{{ STATIC_URL }}images/ico-tux.png"><span style="padding-left:3px; vertical-align:top; font-weight: bold;">Linux</span>
+<ul>
+	<li><a href="http://www.teeworlds.com/files/teeworlds-{{ version }}-linux_x86.tar.gz" target="_blank">Linux x86</a></li>
+	<li><a href="http://www.teeworlds.com/files/teeworlds-{{ version }}-linux_x86_64.tar.gz" target="_blank">Linux x86_64</a></li>
+	<li><a href="http://www.teeworlds.com/files/teeworlds-{{ version }}-linux_x86-oldglibc.tar.gz" target="_blank">Linux x86 (old glibc)</a></li>
+	<li><a href="http://www.teeworlds.com/files/teeworlds-{{ version }}-linux_x86_64-oldglibc.tar.gz" target="_blank">Linux x86_64 (old glibc)</a></li>
+</ul>
+<img src="{{ STATIC_URL }}images/ico-osx-uni.png"><span style="padding-left:3px; vertical-align:top; font-weight: bold;">Mac OS X</span>
+<ul>
+	<li><a href="http://www.teeworlds.com/files/teeworlds-{{ version }}-osx.dmg" target="_blank">Mac OS X (Universal Binary)</a></li>
+</ul>
+<img src="{{ STATIC_URL }}images/ico-source.png"><span style="padding-left:3px; vertical-align:top; font-weight: bold;">Sources</span>
+<ul>
+<li><a href="http://www.teeworlds.com/files/teeworlds-{{ version }}-src.zip" target="_blank">Sources in zip</a></li>
+<li><a href="http://www.teeworlds.com/files/teeworlds-{{ version }}-src.tar.gz" target="_blank">Sources in tar.gz</a></li>
+</ul>
+<br>
+{% endblock %}
