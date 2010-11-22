@@ -92,18 +92,16 @@
 					
 		<a href="/"><img src="{{ STATIC_URL }}images/twlogo.png" alt="teeworlds logo" /></a>
 	</div></div></div>
-		<div id="menu_left"><div id="menu_right"><div id="menu_mid">
-			<div id="menu">
-				<ul>
-					<li id="current"><a href="/">TeeMonitor</a></li>
-					<li ><a href="http://teeworlds.com/forum/">Forum</a></li>
-					<!-- li ><a href="/?page=docs">Docs</a></li -->
-					<li ><a href="http://teeworlds.com/?page=help">Support</a></li>
-					<li ><a href="http://teeworlds.com/?page=downloads">Downloads</a></li>
-					<li ><a href="http://teeworlds.com/?page=journal">Blog</a></li>
-					<li><a href="http://teeworlds.com/?page=news">News</a></li>
-				</ul>
-			</div>
+	<div id="menu_left"><div id="menu_right"><div id="menu_mid">
+<div id="forum-menu"> 
+		<ul> 
+		{% block navigation %}
+		<li class="isactive"><a href="/active">Active</a></li> 
+		<li><a href="/linkinactive">Inactive</a></li> 
+		{% endblock %}
+	</ul> 
+		<ul style="float: right"><li><a href="http://teeworlds.com/">Back to Homepage</a></li></ul> 
+	</div> 
 		</div></div></div>
 		
 		<div id="tlc"><div id="trc"><div id="tb">&nbsp;</div></div></div>
