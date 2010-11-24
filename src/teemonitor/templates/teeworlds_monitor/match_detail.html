@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>{{ server.name }}</h2>
+
+
+    <ul>
+	<li>Gametype: <a href="{% url gametype_detail match.gametype.id %}">{{ match.gametype }}</li> </a>
+	<li>Map: <a href="{% url gamemap_detail match.gamemap.id %}">{{ match.gamemap }}</li> </a>
+	
+	{% if match.players %}
+	<li>
+	Current players:
+	<ul>
+	{% for player_name, player_score in players_scores %}
+	<li> {{ player_name }}: {{ player_score }}</li>
+	{% endfor %}
+	
+	</ul>
+	{% endif %}
+	</li>
+    </ul>
+    
+{% endblock %}

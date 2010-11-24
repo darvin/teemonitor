@@ -26,8 +26,6 @@ def get_server_info(address, port):
         server_info["players"] = []
 
         for i in xrange(0, server_info["num_players"]):
-            from pprint import pprint
-            pprint(slots)
 
             player = {}
             player["score"] = slots[8+i*2+1]

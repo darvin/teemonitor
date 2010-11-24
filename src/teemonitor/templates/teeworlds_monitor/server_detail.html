@@ -2,7 +2,43 @@
 
 {% block content %}
 <h2>{{ server.name }}</h2>
+
+{% load charts %}
+
+{% load charts %}
+{% chart Line players_nums_data encoding=text %}
+    {% title 'Number of Players' 00cc00 36 %}
+    {% scale 0 16%}
+    {%  axes type y  %}
+    {%  axes range 0 0 16  %}
+    {%  color ff0000   %}
+    {%  size 400 200   %}
+{% endchart %}    
+
     <ul>
-	    <li>{{ server.ip }}:{{ server.port }}</li>
+	    <li>Address: {{ server.ip }}:{{ server.port }}</li>
+	    <li>Server version: {{ server.version }}</li>
+	    {% if server.online %}
+			<li>Server is online!</li>
+			<li>Maximal number of players: {{ server.max_num_players }}</li>
+			<li>Flags (FIXME!): {{ server.flags }}</li>
+			<li>Current match: <a href="{% url match_detail match.id %}">
+				{{ match }}</li> </a>
+			
+			{% if server.nums_players.latest.data %}
+			<li>
+			Current players ({{ server.nums_players.latest.data }} total):
+			<ul>
+			{% for player_name, player_score in players_scores %}
+			<li> {{ player_name }}: {{ player_score }}</li>
+			{% endfor %}
+			
+			</ul>
+			</li>
+			{% endif %}
+	    {% else %}
+	    <li>Server is offline</li>
+	    {% endif %}
     </ul>
+    
 {% endblock %}

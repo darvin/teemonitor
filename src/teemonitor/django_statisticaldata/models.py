@@ -4,12 +4,11 @@ from django.db.models import Sum, Avg
 class StatisticalDataManager(models.Manager):
     use_for_related_fields = True
     def create(self, *args, **kwargs):
-        print "hi there!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
         try:
             last = self.latest()
         except:
             last = None
-        if last is None or last.data!=data:
+        if last is None or last.data!=kwargs['data']:
             return super(StatisticalDataManager, self).create(*args, **kwargs) 
         else:
             return last

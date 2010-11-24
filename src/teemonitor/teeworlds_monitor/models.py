@@ -43,22 +43,16 @@ class Server(models.Model):
     """
     Teeworlds Server record
     """
-    
     name = models.CharField(max_length=256)
     ip = models.IPAddressField()
     port = models.PositiveIntegerField()
     online = models.BooleanField()
     check_stamp = models.DateTimeField(auto_now=True)
-    
     interested_stamp = models.DateTimeField(null=True)    
-    gametype = models.CharField(max_length=64, null=True)
-    gametype_name = models.CharField(max_length=64, null=True)
     version = models.CharField(max_length=64, null=True)
-    current_map = models.CharField(max_length=64,null=True )
     max_num_players = models.PositiveIntegerField(null=True)
     progression = models.IntegerField(null=True)
     flags = models.IntegerField(null=True)
-
     
     objects = ServerManager()
     
@@ -80,12 +74,11 @@ class Server(models.Model):
             res = get_server_info(self.ip, self.port)
             if res is not None:
                 self.name = res['name']
-                self.gametype = res['gametype']
-                self.gametype_name = res['gametype_name']
                 self.max_num_players = res['max_players']
                
                 self.current_map = res['map']
                 self.flags = res['flags']
+                old_progression = self.progression
                 self.progression = res['progression']
                 self.version = res['version']
                 self.online = True
@@ -94,14 +87,21 @@ class Server(models.Model):
                 print u"Server %s:%d (%s) data refreshed" % \
                         (self.ip, self.port, self.name)
                 
-                ##fixme!!!
+                if self.progression<old_progression or len(self.match_set.all())==0:
+                    self.match_set.create(\
+                        gametype = GameType.objects.get_or_create(name = res['gametype'])[0],
+                        gametype_name = res['gametype_name'],
+                        gamemap = GameMap.objects.get_or_create(name = res['map'])[0],
+                    )
+                self.match_set.latest().refresh_players(res['players'])
+                
+
                 self.nums_players.create(data=res['num_players'])
  
             else:
                 self.online = False
                 print u"Server %s:%d is offline" % \
                         (self.ip, self.port)
-        
                 self.save()
             
     def interested(self):
@@ -122,3 +122,53 @@ class Server(models.Model):
     
 class NumberPlayers(StatisticalData):
     server = models.ForeignKey(Server, related_name="nums_players")
+
+    
+class GameType(models.Model):
+    name = models.CharField(max_length=256)
+    
+    def __unicode__(self):
+        return self.name
+
+    
+class GameMap(models.Model):
+    name = models.CharField(max_length=256)
+    
+    def __unicode__(self):
+        return self.name
+    
+    
+class Player(models.Model):
+    name = models.CharField(max_length=256)
+    
+    def __unicode__(self):
+        return self.name
+    
+   
+class Match(models.Model):
+    started = models.DateTimeField(auto_now_add=True)
+    server = models.ForeignKey(Server)
+    gametype = models.ForeignKey(GameType)
+    gametype_name = models.CharField(max_length=64, null=True)
+    gamemap = models.ForeignKey(GameMap)
+    players = models.ManyToManyField(Player, null=True)
+    
+    class Meta:
+        get_latest_by = "started"
+    
+    def refresh_players(self, players):
+        for player_dict in players:
+            player, created = Player.objects.get_or_create(name=player_dict['name'])
+            self.players.add(player)
+            self.score_set.create(player=player, data=player_dict['score'])
+
+    def __unicode__(self):
+        return u"%s @ %s" % (self.gametype, self.gamemap)
+    
+class Score(StatisticalData):
+    player = models.ForeignKey(Player, related_name="score_set")
+    match = models.ForeignKey(Match)
+    
+    def __unicode__(self):
+        return self.data
+   

@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% for server in server_list %}
+<a href="{% url server_detail server.id %}">{{ server.name }}</a> {{ server.ip }}:{{ server.port }} 
+
+{{ server.nums_players.latest.data }}/{{ server.max_num_players }}
+<br>
+	
+{% endfor %}
+{% endblock %}

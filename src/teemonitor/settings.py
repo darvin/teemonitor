@@ -94,6 +94,7 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     'django.contrib.admindocs',
     'teeworlds_monitor',
+    'GChartWrapper.charts',
 )
 
 
